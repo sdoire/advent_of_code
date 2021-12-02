@@ -7,27 +7,33 @@ defmodule Day2 do
       |> Enum.map(fn x -> String.split(x, " ") end)
       |> Enum.reduce(%{horizontal: 0, depth: 0}, fn [x, y], acc ->
         case x do
-        "forward" ->
-        {_, updated_acc} = Map.get_and_update(acc, :horizontal, fn h ->
-            {h, h + String.to_integer(y)}
-          end)
-        updated_acc
+          "forward" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :horizontal, fn h ->
+                {h, h + String.to_integer(y)}
+              end)
 
-        "down" ->
-          {_, updated_acc} = Map.get_and_update(acc, :depth, fn d ->
-              {d, d + String.to_integer(y)}
-            end)
-          updated_acc
+            updated_acc
 
-        "up" ->
-          {_, updated_acc} = Map.get_and_update(acc, :depth, fn d ->
-              {d, d - String.to_integer(y)}
-            end)
-          updated_acc
+          "down" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :depth, fn d ->
+                {d, d + String.to_integer(y)}
+              end)
+
+            updated_acc
+
+          "up" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :depth, fn d ->
+                {d, d - String.to_integer(y)}
+              end)
+
+            updated_acc
         end
       end)
 
-      result.depth * result.horizontal
+    result.depth * result.horizontal
   end
 
   def calc_position_2(input) do
@@ -38,30 +44,37 @@ defmodule Day2 do
       |> Enum.map(fn x -> String.split(x, " ") end)
       |> Enum.reduce(%{horizontal: 0, depth: 0, aim: 0}, fn [x, y], acc ->
         case x do
-        "forward" ->
-        {_, updated_acc} = Map.get_and_update(acc, :horizontal, fn h ->
-            {h, h + String.to_integer(y)}
-          end)
+          "forward" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :horizontal, fn h ->
+                {h, h + String.to_integer(y)}
+              end)
 
-        {_, updated_acc} = Map.get_and_update(updated_acc, :depth, fn d ->
-          {d, d + (updated_acc.aim * String.to_integer(y))}
-        end)
-        updated_acc
+            {_, updated_acc} =
+              Map.get_and_update(updated_acc, :depth, fn d ->
+                {d, d + updated_acc.aim * String.to_integer(y)}
+              end)
 
-        "down" ->
-          {_, updated_acc} = Map.get_and_update(acc, :aim, fn a ->
-              {a, a + String.to_integer(y)}
-            end)
-          updated_acc
+            updated_acc
 
-        "up" ->
-          {_, updated_acc} = Map.get_and_update(acc, :aim, fn a ->
-              {a, a - String.to_integer(y)}
-            end)
-          updated_acc
+          "down" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :aim, fn a ->
+                {a, a + String.to_integer(y)}
+              end)
+
+            updated_acc
+
+          "up" ->
+            {_, updated_acc} =
+              Map.get_and_update(acc, :aim, fn a ->
+                {a, a - String.to_integer(y)}
+              end)
+
+            updated_acc
         end
       end)
 
-      result.depth * result.horizontal
+    result.depth * result.horizontal
   end
 end
