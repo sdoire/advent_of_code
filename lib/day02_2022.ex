@@ -5,9 +5,9 @@ defmodule Day022022 do
     score =
       String.split(contents, "\n")
       |> Enum.reduce(0, fn pair, acc ->
-          score_for_round = calc_score(pair)
-          acc + score_for_round
-        end)
+        score_for_round = calc_score(pair)
+        acc + score_for_round
+      end)
 
     IO.inspect(score)
   end
@@ -18,9 +18,9 @@ defmodule Day022022 do
     score =
       String.split(contents, "\n")
       |> Enum.reduce(0, fn pair, acc ->
-          score_for_round = calc_score_2(pair)
-          acc + score_for_round
-        end)
+        score_for_round = calc_score_2(pair)
+        acc + score_for_round
+      end)
 
     IO.inspect(score)
   end

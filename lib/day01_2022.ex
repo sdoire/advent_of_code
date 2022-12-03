@@ -10,7 +10,7 @@ defmodule Day01_2022 do
         calories =
           elf
           |> Enum.map(&String.to_integer/1)
-          |> Enum.sum
+          |> Enum.sum()
 
         if calories > acc do
           calories
@@ -33,19 +33,21 @@ defmodule Day01_2022 do
         calories =
           elf
           |> Enum.map(&String.to_integer/1)
-          |> Enum.sum
+          |> Enum.sum()
 
         cond do
           calories > Enum.at(acc, 0) ->
             [calories, Enum.at(acc, 0), Enum.at(acc, 1)]
+
           calories > Enum.at(acc, 1) ->
             [Enum.at(acc, 0), calories, Enum.at(acc, 1)]
+
           calories > Enum.at(acc, 2) ->
             [Enum.at(acc, 0), Enum.at(acc, 1), calories]
+
           true ->
             acc
-          end
-
+        end
       end)
 
     IO.inspect(Enum.sum(split))
